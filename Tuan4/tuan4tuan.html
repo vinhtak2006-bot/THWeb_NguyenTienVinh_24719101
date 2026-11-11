@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promotions</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #323842;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .menu {
+      height: 64px;
+      border-bottom: 1px solid #f2f3f5;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .menu__inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1176px, calc(100% - 48px));
+      height: 100%;
+      margin: 0 auto;
+    }
+
+    .menu__links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .menu a {
+      color: #565e6c;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .menu__logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 133px;
+      height: 44px;
+      transform: translate(-50%, -50%);
+    }
+
+    .menu__actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu__cart {
+      width: 101px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .menu__avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+
+    h1 {
+      margin: 0 0 58px;
+      text-align: center;
+      font-size: 52px;
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .promotion_1 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 304px;
+      overflow: hidden;
+      border: 1px solid #d8dce2;
+      border-radius: 8px;
+    }
+
+    .promotion_2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 304px;
+      overflow: hidden;
+      border: 1px solid #d8dce2;
+      border-radius: 8px;
+    }
+
+    .gift {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 304px;
+      overflow: hidden;
+      border: 1px solid #d8dce2;
+      border-radius: 8px;
+    }
+
+    .promotion_1__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 30px 67px;
+    }
+
+    .promotion_2__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 30px 67px;
+    }
+
+    .promotion_1 h2 {
+      margin: 0 0 14px;
+      font-size: 34px;
+      line-height: 1.1;
+    }
+
+    .promotion_1 p {
+      margin: 0;
+      color: #565e6c;
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .promotion_1 a,
+    .promotion_2 a,
+    .gift a {
+      display: grid;
+      place-items: center;
+      width: 200px;
+      height: 52px;
+      margin-top: 27px;
+      border-radius: 3px;
+      color: #ffffff;
+      background: #42a886;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      background-color: rgb(42, 40, 40);
+      color: #ffffff;
+    }
+
+    .icon {
+      margin: 20px;
+    }
+
+    .email {
+      display: flex;
+    }
+
+    #email_button {
+      background: #42a886;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="menu">
+      <div class="menu__inner">
+        <nav class="menu__links" aria-label="Main navigation">
+          <a href="#">Shop</a>
+          <a href="#">Offers</a>
+          <a href="#">Our story</a>
+          <a href="#">Blog</a>
+        </nav>
+
+        <img class="menu__logo" src="image/Image 1.png" alt="Logo">
+
+        <div class="menu__actions">
+          <label class="search">
+            <span hidden>Search products</span>
+            <input type="search" placeholder="Search product..." aria-label="Search products">
+          </label>
+          <img class="menu__cart" src="image/Button 1.png" alt="Cart (0)">
+          <img class="menu__avatar" src="image/Avatar 1.png" alt="User account">
+        </div>
+      </div>
+    </div>
+
+    <h1>Promotions</h1>
+
+    <div class="promotion_1" aria-labelledby="promotion-title-1">
+      <img src="image/Image 1 (1).png" alt="Natural skin care products with green leaves">
+      <div class="promotion_1__content">
+        <h2 id="promotion-title-1">Promotion title</h2>
+        <p>Et ipsum irure amet cupidatat mollit exercitation consequat duis aliquip. Reprehenderit Lorem veniam
+          pariatur esse pariatur in aute tempor au</p>
+        <em>*Velit deserunt elit proident velit anim adipisicing</em>
+        <a href="#">Shop now</a>
+      </div>
+    </div>
+    <div class="promotion_2" aria-labelledby="promotion-title-2">
+      <img src="image/Image 1 (2).png" alt="Natural skin care products with green leaves">
+      <div class="promotion_2__content">
+        <h2 id="promotion-title-2">Promotion title</h2>
+        <p>Et ipsum irure amet cupidatat mollit exercitation consequat duis aliquip. Reprehenderit Lorem veniam
+          pariatur esse pariatur in aute tempor au</p>
+        <em>*Velit deserunt elit proident velit anim adipisicing</em>
+        <a href="#">Shop now</a>
+      </div>
+    </div>
+    <div class="gift">
+      <img src="image/Image 1 (3).png" alt="Gift with natural skin care products">
+      <div class="gift__content">
+        <h2>Gift for your skin</h2>
+        <p>Enim officia mana ut esse aliquip irure consectetur doctor commodo et.Cupid</p>
+        <a href="#">Shop now</a>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer_left">
+        <ul>
+          <h2>About</h2>
+          <li>Home</li>
+          <li>Shop</li>
+          <li>Our story</li>
+          <li>Blog</li>
+        </ul>
+        <ul></ul>
+        <ul></ul>
+      </div>
+      <div class="footer_right">
+        <h2>Receive new promotion </h2>
+        <p>Duis ea tempor commodo amet reprehende </p>
+        <div class="email">
+          <input type="email" placeholder="Enter your email" aria-label="Email">
+          <button id="email_button" type="submit">Subscribe</button>
+        </div>
+        <div class="icon">
+          <a href="#"><img style="width: 25px; height: 25px;" src="image/iconfb.webp" alt=""></a>
+          <a href="#"><img style="width: 25px; height: 25px;" src="image/twitter.webp" alt=""></a>
+          <a href="#"><img style="width: 25px; height: 25px;" src="image/LinkedIn 1.png" alt=""></a>
+          <a href="#"><img style="width: 25px; height: 25px;" src="image/yt.webp" alt=""></a>
+        </div>
+        <p>&copy; 2026 Your Company. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

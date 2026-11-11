@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="maudo">Đổi màu đỏ</button>
+  <button id="maugreen">Đổi màu xanh</button>
+
+  <p id="vanban">Đây là văn bản cần đổi màu.</p>
+
+  <button id="an">Ẩn </button>
+  <button id="hien">Hiện </button>
+  <p id="vanbananhien"> Văn bản ẩn hiện </p>
+
+  <button id="click">Click</button>
+
+  <script>
+    var btnRed = document.getElementById("maudo");
+    console.log(btnRed);
+    var btnGreen = document.getElementById("maugreen");
+    var para = document.getElementById("vanban");
+    console.log(para);
+
+    btnRed.addEventListener("click", function () {
+      para.style.color = "red";
+    });
+    btnGreen.addEventListener("click", function () {
+      para.style.color = "green";
+    });
+
+    var btnAn = document.getElementById("an");
+    var btnHien = document.getElementById("hien");
+    var vanbananhien = document.getElementById("vanbananhien");
+
+    btnAn.addEventListener("click", function () {
+      vanbananhien.style.display = "none";
+    });
+    btnHien.addEventListener("click", function () {
+      vanbananhien.style.display = "block";
+    });
+    var click = 0;
+    var btnClick = document.getElementById("click");
+    btnClick.addEventListener("click", function () {
+      click++;
+      console.info("Số lần click :", click);
+    });
+  </script>
+</body>
+
+</html>

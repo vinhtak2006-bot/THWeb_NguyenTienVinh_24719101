@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập tuần 6</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 25px;
+      }
+      section {
+        border-bottom: 1px solid #ccc;
+        padding: 15px 0;
+      }
+      button,
+      input {
+        padding: 6px;
+        margin: 3px;
+      }
+      .an {
+        display: none;
+      }
+      .dark {
+        background: #222;
+        color: white;
+      }
+      .dark section {
+        border-color: white;
+      }
+      #thanh {
+        height: 5px;
+        width: 0;
+        background: blue;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      .traloi {
+        display: none;
+      }
+      .traloi.hien {
+        display: block;
+      }
+      #modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      #modal.noi {
+        display: block;
+      }
+      #hop-modal {
+        background: white;
+        color: black;
+        padding: 20px;
+        width: 300px;
+        margin: 150px auto;
+      }
+      .loi {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="thanh"></div>
+    <h1>Bài tập JavaScript DOM</h1>
+
+    <section>
+      <h2>Bài 1: Đổi màu chữ</h2>
+      <p id="chu1">Đây là văn bản cần đổi màu.</p>
+      <button id="nut1">Đổi màu đỏ</button>
+    </section>
+
+    <section>
+      <h2>Bài 2: Ẩn hiện</h2>
+      <button id="nut2">Ẩn/hiện</button>
+      <p id="chu2">Đây là nội dung có thể ẩn.</p>
+    </section>
+
+    <section>
+      <h2>Bài 3: Đếm click</h2>
+      <button id="nut3">Click</button>
+      <p>Số lần click: <span id="dem">0</span></p>
+    </section>
+
+    <section>
+      <h2>Bài 4: Đổi nội dung</h2>
+      <input id="input4" placeholder="Nhập nội dung" />
+      <button id="nut4">Hiện</button>
+      <p id="chu4">Nội dung sẽ hiện ở đây.</p>
+    </section>
+
+    <section>
+      <h2>Bài 5: Đổi màu nền</h2>
+      <button class="mau" data-mau="lightcoral">Đỏ</button>
+      <button class="mau" data-mau="lightblue">Xanh</button>
+      <button class="mau" data-mau="lightyellow">Vàng</button>
+    </section>
+
+    <section>
+      <h2>Bài 6 và 7: Thêm xóa công việc</h2>
+      <input id="input6" placeholder="Nhập công việc" />
+      <button id="nut6">Thêm</button>
+      <ul id="ds6"></ul>
+    </section>
+
+    <section>
+      <h2>Bài 8: Đếm ký tự</h2>
+      <input id="input8" placeholder="Nhập nội dung" />
+      <p>Số ký tự: <span id="dem8">0</span></p>
+    </section>
+
+    <section>
+      <h2>Bài 9: Hover chữ</h2>
+      <p id="chu9">Rê chuột vào dòng này.</p>
+    </section>
+
+    <section>
+      <h2>Bài 10: Kiểm tra form</h2>
+      <form id="form10">
+        <input id="input10" placeholder="Nhập dữ liệu" />
+        <button>Gửi</button>
+      </form>
+      <p id="tb10"></p>
+    </section>
+
+    <section>
+      <h2>Bài 11: Tìm kiếm</h2>
+      <input id="tim11" placeholder="Tìm trái cây" />
+      <ul id="ds11">
+        <li class="mon">Táo</li>
+        <li class="mon">Cam</li>
+        <li class="mon">Chuối</li>
+        <li class="mon">Xoài</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Bài 12: Dark mode</h2>
+      <button id="nut12">Đổi sáng/tối</button>
+    </section>
+
+    <section>
+      <h2>Bài 13: Đếm ngược</h2>
+      <p id="dongho">00:10</p>
+      <button id="nut13">Bắt đầu</button>
+    </section>
+
+    <section>
+      <h2>Bài 14: Thanh cuộn</h2>
+      <p>Thanh ở đầu trang sẽ chạy khi cuộn trang.</p>
+    </section>
+
+    <section>
+      <h2>Bài 15: Slideshow</h2>
+      <img
+        id="anh15"
+        src="https://picsum.photos/id/10/400/200"
+        alt="Ảnh slideshow"
+        width="400"
+      />
+      <br />
+      <button id="truoc15">Trước</button>
+      <button id="sau15">Sau</button>
+    </section>
+
+    <section>
+      <h2>Bài 16: Câu hỏi thường gặp</h2>
+      <button class="cauhoi">DOM là gì?</button>
+      <p class="traloi">DOM là cách JavaScript thao tác với HTML.</p>
+      <button class="cauhoi">JavaScript làm được gì?</button>
+      <p class="traloi">JavaScript giúp trang web có tương tác.</p>
+    </section>
+
+    <section>
+      <h2>Bài 17: Giỏ hàng</h2>
+      <button class="them-sp" data-ten="Bút" data-gia="5000">Thêm bút</button>
+      <button class="them-sp" data-ten="Vở" data-gia="10000">Thêm vở</button>
+      <ul id="giohang"></ul>
+      <p id="tongtien">Tổng tiền: 0 đ</p>
+    </section>
+
+    <section>
+      <h2>Bài 18: To-do có lưu</h2>
+      <input id="input18" placeholder="Nhập việc cần làm" />
+      <button id="nut18">Thêm</button>
+      <ul id="ds18"></ul>
+    </section>
+
+    <section>
+      <h2>Bài 19: Đăng ký</h2>
+      <form id="form19">
+        <p>
+          <input id="ten19" placeholder="Họ tên" /><span
+            id="loi-ten"
+            class="loi"
+          ></span>
+        </p>
+        <p>
+          <input id="email19" placeholder="Email" /><span
+            id="loi-email"
+            class="loi"
+          ></span>
+        </p>
+        <p>
+          <input id="mk19" type="password" placeholder="Mật khẩu" /><span
+            id="loi-mk"
+            class="loi"
+          ></span>
+        </p>
+        <button>Đăng ký</button>
+      </form>
+      <p id="tb19"></p>
+    </section>
+
+    <section>
+      <h2>Bài 20: Modal</h2>
+      <button id="mo20">Mở popup</button>
+    </section>
+
+    <div id="modal">
+      <div id="hop-modal">
+        <button id="dong20">X</button>
+        <h3>Xác nhận</h3>
+        <p>Đây là nội dung popup.</p>
+      </div>
+    </div>
+
+    <script>
+      var chu1 = document.querySelector("#chu1");
+      document.querySelector("#nut1").addEventListener("click", function () {
+        chu1.style.color = "red";
+      });
+
+      document.querySelector("#nut2").addEventListener("click", function () {
+        document.querySelector("#chu2").classList.toggle("an");
+      });
+
+      var soLan = 0;
+      document.querySelector("#nut3").addEventListener("click", function () {
+        soLan++;
+        document.querySelector("#dem").textContent = soLan;
+      });
+
+      document.querySelector("#nut4").addEventListener("click", function () {
+        document.querySelector("#chu4").textContent =
+          document.querySelector("#input4").value;
+      });
+
+      document.querySelectorAll(".mau").forEach(function (nut) {
+        nut.addEventListener("click", function (event) {
+          document.body.style.backgroundColor = event.target.dataset.mau;
+        });
+      });
+
+      document.querySelector("#nut6").addEventListener("click", function () {
+        var input = document.querySelector("#input6");
+        if (input.value.trim() !== "") {
+          var li = document.createElement("li");
+          var xoa = document.createElement("button");
+          li.textContent = input.value;
+          xoa.textContent = "Xóa";
+          xoa.addEventListener("click", function () {
+            li.remove();
+          });
+          li.appendChild(xoa);
+          document.querySelector("#ds6").appendChild(li);
+          input.value = "";
+        }
+      });
+
+      document.querySelector("#input8").addEventListener("input", function () {
+        document.querySelector("#dem8").textContent = this.value.length;
+      });
+
+      var chu9 = document.querySelector("#chu9");
+      chu9.addEventListener("mouseover", function () {
+        chu9.style.fontWeight = "bold";
+        chu9.style.fontStyle = "italic";
+      });
+      chu9.addEventListener("mouseout", function () {
+        chu9.style.fontWeight = "normal";
+        chu9.style.fontStyle = "normal";
+      });
+
+      document
+        .querySelector("#form10")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var tb = document.querySelector("#tb10");
+          if (document.querySelector("#input10").value.trim() === "") {
+            tb.textContent = "Vui lòng nhập dữ liệu.";
+            tb.style.color = "red";
+          } else {
+            tb.textContent = "Gửi thành công.";
+            tb.style.color = "green";
+          }
+        });
+
+      document.querySelector("#tim11").addEventListener("input", function () {
+        var tuKhoa = this.value.toLowerCase();
+        document.querySelectorAll(".mon").forEach(function (mon) {
+          if (mon.textContent.toLowerCase().includes(tuKhoa)) {
+            mon.style.display = "list-item";
+          } else {
+            mon.style.display = "none";
+          }
+        });
+      });
+
+      if (localStorage.getItem("giaoDien") === "toi") {
+        document.body.classList.add("dark");
+      }
+      document.querySelector("#nut12").addEventListener("click", function () {
+        document.body.classList.toggle("dark");
+        if (document.body.classList.contains("dark")) {
+          localStorage.setItem("giaoDien", "toi");
+        } else {
+          localStorage.setItem("giaoDien", "sang");
+        }
+      });
+
+      var idDongHo;
+      document.querySelector("#nut13").addEventListener("click", function () {
+        clearInterval(idDongHo);
+        var giay = 10;
+        idDongHo = setInterval(function () {
+          var phut = Math.floor(giay / 60);
+          var giayLe = giay % 60;
+          document.querySelector("#dongho").textContent =
+            String(phut).padStart(2, "0") +
+            ":" +
+            String(giayLe).padStart(2, "0");
+          giay--;
+          if (giay < 0) {
+            clearInterval(idDongHo);
+            document.querySelector("#dongho").textContent = "Hết giờ";
+          }
+        }, 1000);
+      });
+
+      window.addEventListener("scroll", function () {
+        var cao =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        document.querySelector("#thanh").style.width =
+          (window.scrollY / cao) * 100 + "%";
+      });
+
+      var dsAnh = [
+        "https://picsum.photos/id/10/400/200",
+        "https://picsum.photos/id/20/400/200",
+        "https://picsum.photos/id/30/400/200",
+      ];
+      var viTriAnh = 0;
+      document.querySelector("#sau15").addEventListener("click", function () {
+        viTriAnh = (viTriAnh + 1) % dsAnh.length;
+        document.querySelector("#anh15").src = dsAnh[viTriAnh];
+      });
+      document.querySelector("#truoc15").addEventListener("click", function () {
+        viTriAnh = (viTriAnh - 1 + dsAnh.length) % dsAnh.length;
+        document.querySelector("#anh15").src = dsAnh[viTriAnh];
+      });
+
+      document.querySelectorAll(".cauhoi").forEach(function (cauHoi) {
+        cauHoi.addEventListener("click", function () {
+          cauHoi.nextElementSibling.classList.toggle("hien");
+        });
+      });
+
+      var gioHang = [];
+      function hienGioHang() {
+        var danhSach = document.querySelector("#giohang");
+        var tong = 0;
+        danhSach.innerHTML = "";
+        gioHang.forEach(function (sanPham, index) {
+          var li = document.createElement("li");
+          var xoa = document.createElement("button");
+          li.textContent = sanPham.ten + ": " + sanPham.gia + " đ";
+          xoa.textContent = "Xóa";
+          xoa.addEventListener("click", function () {
+            gioHang.splice(index, 1);
+            hienGioHang();
+          });
+          li.appendChild(xoa);
+          danhSach.appendChild(li);
+          tong += sanPham.gia;
+        });
+        document.querySelector("#tongtien").textContent =
+          "Tổng tiền: " + tong.toLocaleString("vi-VN") + " đ";
+      }
+      document.querySelectorAll(".them-sp").forEach(function (nut) {
+        nut.addEventListener("click", function () {
+          gioHang.push({ ten: nut.dataset.ten, gia: Number(nut.dataset.gia) });
+          hienGioHang();
+        });
+      });
+
+      var ds18 = JSON.parse(localStorage.getItem("viecCanLam")) || [];
+      function hienDs18() {
+        var danhSach = document.querySelector("#ds18");
+        danhSach.innerHTML = "";
+        ds18.forEach(function (viec, index) {
+          var li = document.createElement("li");
+          var xoa = document.createElement("button");
+          li.textContent = viec;
+          xoa.textContent = "Xóa";
+          xoa.addEventListener("click", function () {
+            ds18.splice(index, 1);
+            localStorage.setItem("viecCanLam", JSON.stringify(ds18));
+            hienDs18();
+          });
+          li.appendChild(xoa);
+          danhSach.appendChild(li);
+        });
+      }
+      document.querySelector("#nut18").addEventListener("click", function () {
+        var viec = document.querySelector("#input18").value.trim();
+        if (viec !== "") {
+          ds18.push(viec);
+          localStorage.setItem("viecCanLam", JSON.stringify(ds18));
+          hienDs18();
+          document.querySelector("#input18").value = "";
+        }
+      });
+      hienDs18();
+
+      document
+        .querySelector("#form19")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var ten = document.querySelector("#ten19").value.trim();
+          var email = document.querySelector("#email19").value.trim();
+          var mk = document.querySelector("#mk19").value;
+          var dung = true;
+          document.querySelector("#loi-ten").textContent = "";
+          document.querySelector("#loi-email").textContent = "";
+          document.querySelector("#loi-mk").textContent = "";
+          if (ten === "") {
+            document.querySelector("#loi-ten").textContent = " Nhập họ tên";
+            dung = false;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document.querySelector("#loi-email").textContent =
+              " Email không đúng";
+            dung = false;
+          }
+          if (mk.length < 6) {
+            document.querySelector("#loi-mk").textContent =
+              " Mật khẩu từ 6 ký tự";
+            dung = false;
+          }
+          if (dung)
+            document.querySelector("#tb19").textContent = "Đăng ký thành công";
+        });
+
+      var modal = document.querySelector("#modal");
+      document.querySelector("#mo20").addEventListener("click", function () {
+        modal.classList.add("noi");
+      });
+      document.querySelector("#dong20").addEventListener("click", function () {
+        modal.classList.remove("noi");
+      });
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) modal.classList.remove("noi");
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") modal.classList.remove("noi");
+      });
+    </script>
+  </body>
+</html>

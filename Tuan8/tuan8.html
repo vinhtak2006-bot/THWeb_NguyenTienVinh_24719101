@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tuần 8 jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+  <h1>Tuần 8 jQuery</h1>
+  <section>
+    <h2>1. Selector và CSS</h2>
+    <div id="book-list">
+      <div class="book" data-genre="fiction">
+        <h3>Nhà Giả Kim</h3>
+        <p class="price">89.000đ</p>
+      </div>
+      <div class="book" data-genre="skill">
+        <h3>Đắc Nhân Tâm</h3>
+        <p class="price">120.000đ</p>
+      </div>
+      <div class="book" data-genre="fiction">
+        <h3>Hai Số Phận</h3>
+        <p class="price">135.000đ</p>
+      </div>
+    </div>
+    <button id="btn-class">Chọn .book</button><button id="btn-attr">Chọn fiction</button><button id="btn-first">Chọn
+      sách đầu</button>
+    <p class="output" id="selector-result">Thử một selector.</p>
+  </section>
+
+  <section>
+    <h2>2. DOM: text(), val(), append()</h2>
+    <h3 id="title">Sách bán chạy</h3>
+    <input id="book-name" placeholder="Nhập tên sách mới" />
+    <button id="btn-change">Đổi tiêu đề bằng text()</button><button id="btn-add">Thêm sách bằng append()</button>
+    <div id="added-books"></div>
+  </section>
+
+  <section>
+    <h2>3. Sự kiện và Event Delegation</h2>
+    <button id="btn-cart">Thêm vào giỏ</button><button id="btn-reset">Làm mới</button>
+    <p>Trong giỏ: <strong id="cart-count">0</strong> cuốn</p>
+    <button id="btn-create">Tạo sách động</button>
+    <div id="dynamic-list"></div>
+  </section>
+
+  <section>
+    <h2>4. Hiệu ứng</h2>
+    <button id="btn-toggle">Ẩn/hiện mô tả</button><button id="btn-move">di chuyển hộp</button>
+    <p id="description">
+      Đây là mô tả sách
+    </p>
+    <p id="box">Hộp này sẽ di chuyển.</p>
+  </section>
+
+
+  <section>
+    <h2>AJAX VỚI JQUERY</h2>
+    <button id="btn-ajax">Lấy dữ liệu từ server</button>
+    <p class="output" id="api-result">Chưa tải dữ liệu.</p>
+    <div id="api-books"></div>
+  </section>
+
+  <script>
+    $(function () {
+      const escapeHtml = (value) => $("<div>").text(value).html();
+
+      $("#btn-class").on("click", function () {
+        $("#book-list .book").css({ background: "", color: "orange" });
+      });
+      $("#btn-attr").on("click", function () {
+        $("#book-list .book").css({ background: "", color: "" });
+        $("#book-list [data-genre='fiction']").css("background", "yellow");
+      });
+      $("#btn-first").on("click", function () {
+        $("#book-list .book").css({ background: "", color: "" });
+        $("#book-list .book:first").css("background", "lightblue");
+      });
+
+      $("#btn-change").on("click", function () {
+        $("#title").text(
+          $("#book-name").val().trim() || "Sách mới về tuần này",
+        );
+      });
+      $("#btn-add").on("click", function () {
+        const name = $("#book-name").val().trim();
+        if (!name) {
+          alert("Bạn chưa nhập tên sách cần thêm ");
+          return;
+        }
+        $("#added-books").append(
+          '<div class="book"><h3>' +
+          escapeHtml(name) +
+          '</h3><p class="price">100.000đ</p></div>',
+        );
+        $("#book-name").val("");
+      });
+
+      let count = 0;
+      $("#btn-cart").on("click", function () {
+        count++;
+        $("#cart-count").text(count);
+      });
+      $("#btn-reset").on("click", function () {
+        count = 0;
+        $("#cart-count").text(count);
+      });
+      let bookNumber = 0;
+      $("#btn-create").on("click", function () {
+        bookNumber++;
+        $("#dynamic-list").append(
+          '<div class="book"><h3>Sách động ' +
+          bookNumber +
+          '</h3><button class="btn-delete">Xóa</button></div>',
+        );
+      });
+      $("#dynamic-list").on("click", ".btn-delete", function () {
+        $(this)
+          .closest(".book")
+          .fadeOut(200, function () {
+            $(this).remove();
+          });
+      });
+
+      $("#btn-toggle").on("click", function () {
+        $("#description").toggle(400);
+      });
+      $("#btn-move").on("click", function () {
+        $("#box")
+          .stop(true)
+          .animate({ marginLeft: "180px", opacity: 0.5 }, 500)
+          .animate({ marginLeft: "0", opacity: 1 }, 500);
+      });
+      $("#btn-ajax").on("click", function () {
+        $("#api-result").text("Đang tải dữ liệu...");
+        $.ajax({
+          url: "https://api.example.com/books",
+          method: "GET",
+          dataType: "json",
+          success: function (data) {
+            $("#api-result").text("Dữ liệu đã tải xong.");
+            $("#api-books").empty();
+            data.forEach(function (book) {
+              $("#api-books").append(
+                '<div class="book"><h3>' +
+                escapeHtml(book.title) +
+                '</h3><p class="price">' +
+                escapeHtml(book.price) +
+                "</p></div>",
+              );
+            });
+          },
+          error: function () {
+            $("#api-result").text("Lỗi khi tải dữ liệu.");
+          },
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
